@@ -1,0 +1,12 @@
+.articleForm {
+  /* TODO: fix the form layout */
+  /* button and textarea should be in one "column" */
+    width: 300px;
+    margin: 0 auto;
+}
+.articleEditor {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-width: 2px;
+  border-color: black;
+}

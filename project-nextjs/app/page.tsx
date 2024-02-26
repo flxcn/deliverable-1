@@ -11,33 +11,28 @@ async function getLinks(): Promise<
 > {
   // TODO: make this dynamically query
   // hint: `getSlugs`
-  const slugs = await getSlugs();
-  const links = slugs.map(
-    slug => ({
-      name: slug,
-      href: `/articles/${slug}`
-    })
-  );
+  const slugs = await getSlugs()
+  const links = slugs.map((slug) => ({
+    name: slug,
+    href: `/articles/${slug}`,
+  }))
 
-  return links;
+  return links
 }
-
-
 
 export default async function Home() {
   const links = await getLinks()
 
-  const addArticle = async (formData:FormData) => {
+  const addArticle = async (formData: FormData) => {
     'use server'
-    const slugInput = formData.get("slug")
-    const contentInput = formData.get("content")
+    const slugInput = formData.get('slug')
+    const contentInput = formData.get('content')
     const article = await postArticle(
-        slugInput as string,
-        contentInput as string
-    );
+      slugInput as string,
+      contentInput as string,
+    )
 
     console.log(article)
-
   }
 
   return (
@@ -47,7 +42,7 @@ export default async function Home() {
           {
             // TODO: use `map` to render links with `Link` component
             // wrapped in ? elements
-            links.map((link) => ( 
+            links.map((link) => (
               <li key={link.name}>
                 <Link href={link.href}>{link.name}</Link>
               </li>
@@ -62,8 +57,19 @@ export default async function Home() {
         // there are also HTML attribute problems
       }
       <form className={styles.articleForm} action={addArticle}>
-        <input type="text" id="slug" name="slug" placeholder="Enter slug here" className={styles.articleEditor}></input>
-        <textarea id="content" name="content" placeholder="Enter content here" className={styles.articleEditor} />
+        <input
+          type="text"
+          id="slug"
+          name="slug"
+          placeholder="Enter slug here"
+          className={styles.articleEditor}
+        ></input>
+        <textarea
+          id="content"
+          name="content"
+          placeholder="Enter content here"
+          className={styles.articleEditor}
+        />
         <button type="submit">Post Article</button>
       </form>
     </>

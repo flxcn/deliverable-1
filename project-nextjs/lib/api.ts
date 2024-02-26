@@ -15,20 +15,20 @@ export async function getArticle(slug: string): string {
   // TODO: get the text from a markdown file with the given `slug`
   const slugFile = path.join(root, slug)
   // `slug` can be, e.g., `hello-world`, `the-success`, etc.
-  const text = fs.readFileSync(slugFile, 'utf8');
-  return text;
+  const text = fs.readFileSync(slugFile, 'utf8')
+  return text
 }
 
 export async function postArticle(slug: string, content: string): boolean {
   // TODO: create markdown file in filesystem with slug and content
   try {
-    const slugFile = path.join(root, slug);
-    fs.writeFileSync(slugFile, content);
+    const slugFile = path.join(root, slug)
+    fs.writeFileSync(slugFile, content)
     // return `true` on success
-    return true;
+    return true
   } catch {
     // must handle any errors and exceptions -> should then return `false`
-    console.log("error");
-    return false;
+    console.log('error')
+    return false
   }
 }
